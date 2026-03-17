@@ -1,35 +1,104 @@
-# BACKEND MERN - CALENDAR
-Este es el repositorio del backend de una aplicación de calendario desarrollada con la pila MERN (MongoDB, Express, React, Node.js). Esta aplicación permite a los usuarios gestionar eventos y citas de manera eficiente.
+# Blackjack Royal Mean (Backend)
 
-# Características
-Este backend se conecta a una base de datos MongoDB para almacenar y gestionar los datos de los usuarios y sus eventos.
-Proporciona una API RESTful para interactuar con la aplicación frontend.
-Implementa autenticación y autorización de usuarios utilizando JSON Web Tokens (JWT).
-# Requisitos Previos
-Antes de ejecutar la aplicación, asegúrate de tener instalado lo siguiente en tu máquina:
-Node.js (versión 14 o superior)
-npm (Node Package Manager)
-MongoDB (puede ser una instancia local o un servicio en la nube como MongoDB Atlas)
-Docker (opcional, para ejecutar la aplicación en un contenedor)
-# Instalación
-Clona este repositorio en tu máquina local
-__git clone https://github.com/JhoannPV/DevOps-Proyect-Backend.git__
-Navega al directorio del proyecto
-__cd DevOps-Proyect-Backend__
-Instala las dependencias del proyecto
-__npm install__
-Crea un archivo .env en la raíz del proyecto y configura las variables de entorno necesarias (puerto, URL de la base de datos, nombre de la base de datos, clave secreta para JWT). Puedes usar el archivo .env.template como referencia. Donde puse las variables de entorno en comentarios para la base de datos en MongoDB, las cual puedes usar perefectamente.
+Backend en Node.js + Express + TypeScript para autenticación y registro de estadísticas del juego Blackjack.
 
-Para generear la clave secreta para JWT, puedes usar el siguiente comando en LInux o Git Bash en Windows:
-__openssl rand -hex 32__
+## Tecnologías
 
-# Build y Run
-Para construir y ejecutar la aplicación, usa el siguiente comando:
-__npm run build_
-__npm start__
+- Node.js
+- Express
+- MongoDB + Mongoose
+- JWT para autenticación
+- TypeScript
 
+## Funcionalidades principales
 
-# Si queres ejecutar la aplicación y la Base de Datos en un contenedor Docker, asegúrate de tener Docker instalado y sigue los pasos a continuación.
-# Construcción de la Imagen Docker y creación del Contenedor
-Para construir la imagen Docker del backend, la base de datos MongoDB y crear los contenedores, y que se ejecuten automáticamente, usa el siguiente comando:
-__docker compose up -d__
+- Registro e inicio de sesión de usuarios.
+- Renovación de token JWT.
+- Registro de resultados de partidas.
+- Consulta de estadísticas personales y globales.
+
+## API principal
+
+Prefijo base: `/api`
+
+Endpoints de autenticación:
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET /api/auth/renew-token`
+
+Endpoints de estadísticas:
+
+- `GET /api/stats/me`
+- `POST /api/stats/register-result`
+- `GET /api/stats/global`
+
+## Requisitos previos
+
+- Node.js 22.18+
+- npm
+- MongoDB (local o remoto)
+
+## Variables de entorno
+
+Crea un archivo `.env` usando `.env.template` como base.
+
+Variables requeridas:
+
+```env
+PORT=3000
+JWT_SEED=tu_clave_secreta
+MONGO_URL=mongodb://usuario:password@localhost:27017/
+MONGO_DB_NAME=blackjackdb
+```
+
+Puedes generar una clave JWT segura con:
+
+```bash
+openssl rand -hex 32
+```
+
+## Instalación
+
+```bash
+npm install
+```
+
+## Scripts disponibles
+
+```bash
+# Desarrollo con recarga
+npm run dev
+
+# Compilar TypeScript
+npm run build
+
+# Ejecutar build compilado
+npm start
+```
+
+## Ejecución en desarrollo
+
+```bash
+npm run dev
+```
+
+## Ejecución en producción local
+
+```bash
+npm run build
+npm start
+```
+
+## Docker (MongoDB local)
+
+El archivo `docker-compose.yml` levanta un contenedor de MongoDB en el puerto `27017`.
+
+```bash
+docker compose up -d
+```
+
+Importante:
+
+- Este `docker-compose.yml` solo inicia MongoDB (no inicia el servidor backend).
+- Asegúrate de que `MONGO_URL` en `.env` coincida con las credenciales configuradas en Docker.
