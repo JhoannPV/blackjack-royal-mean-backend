@@ -5,8 +5,8 @@ export class LoginUserDto {
     ) { }
 
     static create(object: { [key: string]: any }): LoginUserDto {
-        const { usuario, username, password } = object;
-        const userValue = (usuario ?? username ?? '').toString();
+        const { username, password } = object;
+        const userValue = (username ?? '').toString();
 
         return new LoginUserDto(userValue.toLowerCase(), password);
     }

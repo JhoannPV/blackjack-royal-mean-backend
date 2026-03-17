@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { AuthRepository, CustomError, LoginUser, LoginUserDto, RegisterUser, RegisterUserDto, RenewToken } from '../../domain';
-import { UserModel } from '../../data/mongodb';
 
 export class AuthController {
 
