@@ -1,6 +1,5 @@
 import express, { Router, Request, Response } from 'express';
 import cors from 'cors';
-import path from 'path';
 
 interface Options {
     port?: number;
